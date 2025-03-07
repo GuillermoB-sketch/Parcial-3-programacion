@@ -1,0 +1,25 @@
+import math
+def momento_inercia_rectangular(base, altura):
+    """Calcula el momento de inercia de una viga de sección rectangular."""
+    return (base * altura**3) / 12
+def momento_inercia_circular(radio):
+    """Calcula el momento de inercia de una viga de sección circular."""
+    return (math.pi * radio**4) / 4
+
+print("A continuacion ingresa las medidas de la viga:")
+print("La seccion de la viga es Rectangular (R) o circular (C)")
+opcion = input("Seleccione el tipo de sección (R o C): ")
+if opcion == "R":
+    b = float(input("Ingrese la base (m): "))
+    h = float(input("Ingrese la altura (m): "))
+    I = momento_inercia_rectangular(b, h)
+    
+elif opcion == "C":
+    r = float(input("Ingrese el radio (m): "))
+    I = momento_inercia_circular(r)
+P = int(input("Fuerza aplicada (N): "))  # Fuerza aplicada en Newtons
+L = int(input("Longitud de la viga (m): "))     # Longitud de la viga en metros
+E = 2.1e11  # Módulo de elasticidad en Pascales (Acero)
+deflexion = (P * L**3) / (48 * E * I)
+# Mostrar resultado
+print(f"La deflexión máxima de la viga es: {deflexion:.6f} metros")
